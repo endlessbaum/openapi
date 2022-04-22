@@ -46,6 +46,11 @@ func (c *Configuration) BasePath() string {
 	return c.basePath
 }
 
+func (c *Configuration) SetBasePathbyFullURI(fullURI string) {
+	c.basePath = SetBasePathbyFullURI
+}
+
+
 func (c *Configuration) Host() string {
 	return c.host
 }
