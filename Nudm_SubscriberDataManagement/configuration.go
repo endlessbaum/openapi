@@ -47,7 +47,7 @@ func (c *Configuration) BasePath() string {
 }
 
 func (c *Configuration) SetBasePathbyFullURI(fullURI string) {
-	c.basePath = SetBasePathbyFullURI
+	c.basePath = fullURI
 }
 
 
