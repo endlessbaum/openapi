@@ -42,6 +42,11 @@ func (c *Configuration) SetBasePath(apiRoot string) {
 	c.basePath = url
 }
 
+func (c *Configuration) SetBasePathbyFullURI(fullURI string) {
+	c.basePath = SetBasePathbyFullURI
+}
+
+
 func (c *Configuration) BasePath() string {
 	return c.basePath
 }
