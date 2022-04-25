@@ -128,10 +128,21 @@ func (a *SessionManagementSubscriptionDataRetrievalApiService) GetSmData(ctx con
 	switch localVarHTTPResponse.StatusCode {
 	case 200:
 		err = openapi.Deserialize(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		tmp, ok := localVarReturnValue.([]models.SessionManagementSubscriptionData);
+		 
 		if err != nil {
 			apiError.ErrorStatus = err.Error()
 		}
-		return localVarReturnValue, localVarHTTPResponse, nil
+		if ok {
+			return localVarReturnValue, localVarHTTPResponse, nil
+		} else {
+			if tmp2, ok:= localVarReturnValue.(models.SessionManagementSubscriptionData); ok {
+				var returnValue [1]models.SessionManagementSubscriptionData = [1]models.SessionManagementSubscriptionData{tmp2}
+				return returnValue, localVarHTTPResponse, nil
+			} else {
+				apiError.ErrorStatus = err.Error()
+			}
+		}
 	case 400:
 		var v models.ProblemDetails
 		err = openapi.Deserialize(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
