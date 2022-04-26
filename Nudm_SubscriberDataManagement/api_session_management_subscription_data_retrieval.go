@@ -21,6 +21,8 @@ import (
 
 	"github.com/free5gc/openapi"
 	"github.com/free5gc/openapi/models"
+
+	"encoding/json"
 )
 
 // Linger please
@@ -132,14 +134,18 @@ import (
 		 if err != nil {
 			 apiError.ErrorStatus = err.Error()
 		 }
+
+		jsonout, _ := json.Marshal(tmpLocalVarReturnValue)
+		fmt.Println(string(jsonout))
+
 		 returnValue, ok := tmpLocalVarReturnValue.([]models.SessionManagementSubscriptionData)
 		 needCastValue, needCast := tmpLocalVarReturnValue.(models.SessionManagementSubscriptionData)
-			
+		
 		 if !ok && needCast {
 			var castedValue []models.SessionManagementSubscriptionData = []models.SessionManagementSubscriptionData{needCastValue} 
 			return castedValue, localVarHTTPResponse, nil
 		 }
-		 
+
 		 return returnValue, localVarHTTPResponse, nil
 		 
 	 case 400:
