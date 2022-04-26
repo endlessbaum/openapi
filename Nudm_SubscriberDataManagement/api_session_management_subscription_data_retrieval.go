@@ -142,13 +142,18 @@ import (
 		 needCastValue, needCast := tmpLocalVarReturnValue.(models.SessionManagementSubscriptionData)
 		
 		 if needCast {
+			jsonout2, _ := json.Marshal(needCastValue)
+			fmt.Println("casted : ", string(jsonout2))
 			var castedValue []models.SessionManagementSubscriptionData = []models.SessionManagementSubscriptionData{needCastValue} 
 			return castedValue, localVarHTTPResponse, nil
 		 }
 		 if ok {
+			jsonout3, _ := json.Marshal(returnValue)
+			fmt.Println("ok : ", string(jsonout3))
 			return returnValue, localVarHTTPResponse, nil
 		 }
 
+		 fmt.Println("casted error")
 		 return localVarReturnValue, localVarHTTPResponse, nil
 		 
 	 case 400:
