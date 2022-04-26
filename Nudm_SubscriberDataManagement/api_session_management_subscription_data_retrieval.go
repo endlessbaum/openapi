@@ -60,7 +60,8 @@ func (a *SessionManagementSubscriptionDataRetrievalApiService) GetSmData(ctx con
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  interface{}
+		localVarReturnValue  []models.SessionManagementSubscriptionData
+		tmpLocalVarReturnValue  interface{}
 	)
 
 	// create path and map variables
@@ -127,9 +128,9 @@ func (a *SessionManagementSubscriptionDataRetrievalApiService) GetSmData(ctx con
 
 	switch localVarHTTPResponse.StatusCode {
 	case 200:
-		err = openapi.Deserialize(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-		returnValue, ok := localVarReturnValue.([]models.SessionManagementSubscriptionData);
-		castValue, needcast:= localVarReturnValue.(models.SessionManagementSubscriptionData)
+		err = openapi.Deserialize(&tmpLocalVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		returnValue, ok := tmpLocalVarReturnValue.([]models.SessionManagementSubscriptionData);
+		castValue, needcast:= tmpLocalVarReturnValue.(models.SessionManagementSubscriptionData)
 		 
 		if err != nil {
 			apiError.ErrorStatus = err.Error()
@@ -141,8 +142,7 @@ func (a *SessionManagementSubscriptionDataRetrievalApiService) GetSmData(ctx con
 		if needcast {
 				var castedValue []models.SessionManagementSubscriptionData = []models.SessionManagementSubscriptionData{castValue}
 				return castedValue, localVarHTTPResponse, nil
-		}
-		 else {
+		} else {
 			apiError.ErrorStatus = err.Error()
 		}
 	case 400:
