@@ -141,12 +141,15 @@ import (
 		 returnValue, ok := tmpLocalVarReturnValue.([]models.SessionManagementSubscriptionData)
 		 needCastValue, needCast := tmpLocalVarReturnValue.(models.SessionManagementSubscriptionData)
 		
-		 if !ok && needCast {
+		 if needCast {
 			var castedValue []models.SessionManagementSubscriptionData = []models.SessionManagementSubscriptionData{needCastValue} 
 			return castedValue, localVarHTTPResponse, nil
 		 }
+		 if ok {
+			return returnValue, localVarHTTPResponse, nil
+		 }
 
-		 return returnValue, localVarHTTPResponse, nil
+		 return localVarReturnValue, localVarHTTPResponse, nil
 		 
 	 case 400:
 		 var v models.ProblemDetails
