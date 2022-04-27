@@ -181,8 +181,6 @@ import (
 		// 	fmt.Println("ok : ", string(jsonout3))
 		// 	return returnValue, localVarHTTPResponse, nil
 		//  }
-
-		 fmt.Println("casted error")
 		 return localVarReturnValue, localVarHTTPResponse, nil
 		 
 	 case 400:
