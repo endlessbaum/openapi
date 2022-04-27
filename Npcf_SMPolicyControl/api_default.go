@@ -45,6 +45,8 @@ func (a *DefaultApiService) SmPoliciesPost(ctx context.Context, smPolicyContextD
 		localVarReturnValue  models.SmPolicyDecision
 	)
 
+	fmt.Println("SmPoliciesPost start")
+
 	// create path and map variables
 	localVarPath := a.client.cfg.BasePath() + "/sm-policies"
 
@@ -70,9 +72,11 @@ func (a *DefaultApiService) SmPoliciesPost(ctx context.Context, smPolicyContextD
 
 	r, err := openapi.PrepareRequest(ctx, a.client.cfg, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
+		fmt.Println("PrepareRequest failed")
 		return localVarReturnValue, nil, err
 	}
 
+	fmt.Println("api call")
 	localVarHTTPResponse, err := openapi.CallAPI(a.client.cfg, r)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -81,6 +85,7 @@ func (a *DefaultApiService) SmPoliciesPost(ctx context.Context, smPolicyContextD
 	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
+		fmt.Println("HTTPResponse read failed")
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
