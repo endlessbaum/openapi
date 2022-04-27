@@ -147,18 +147,20 @@ import (
 
 			// }
 		} else {
-			md, _ := tmpLocalVarReturnValue.(map[string]interface{})
 			var tmp models.SessionManagementSubscriptionData;
-			singleNssai, snssaiOk := md["singleNssai"].(models.Snssai)
-			if snssaiOk {
-				fmt.Println("singleNssai asserttion ok")
-			}
-			tmp.SingleNssai = &singleNssai
+			md, _ := tmpLocalVarReturnValue.(map[string]interface{})
+			singleNssai, _ := md["singleNssai"].(map[string]interface{})
+			sst, _ := singleNssai["sst"].(int32)
+			sd, _ := singleNssai["sd"].(string)
+			fmt.Println(singleNssai["sd"], singleNssai["sst"])
+			tmp.SingleNssai.Sst = sst;
+			tmp.SingleNssai.Sd = sd;
 			DnnConfigurations, dnnConfigurationsOk := md["dnnConfigurations"].(map[string]models.DnnConfiguration)
 			if dnnConfigurationsOk {
 				fmt.Println("DnnConfigurations asserttion ok")
 			}
 			tmp.DnnConfigurations = DnnConfigurations
+			fmt.Println(tmp)
 		}
 
 		 returnValue, ok := tmpLocalVarReturnValue.([]models.SessionManagementSubscriptionData)
