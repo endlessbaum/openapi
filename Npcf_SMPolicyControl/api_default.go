@@ -76,9 +76,10 @@ func (a *DefaultApiService) SmPoliciesPost(ctx context.Context, smPolicyContextD
 		return localVarReturnValue, nil, err
 	}
 
-	fmt.Println("api call")
+	fmt.Println("api call", localVarPath, localVarPostBody)
 	localVarHTTPResponse, err := openapi.CallAPI(a.client.cfg, r)
 	if err != nil || localVarHTTPResponse == nil {
+		fmt.Println("api call failed")
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
