@@ -140,11 +140,26 @@ import (
 		fmt.Println(string(jsonout))
 		v := reflect.TypeOf(tmpLocalVarReturnValue)
 		fmt.Println("res date type is ", v.Kind())
-		// if v.Kind() == reflect.Slice{
+		if v.Kind() == reflect.Slice{
+			fmt.Println("res date type is slice")
+			// s := reflect.ValueOf(tmpLocalVarReturnValue)
+			// for i:= 0; i< s.Len(); i++{
 
-		// } else {
-
-		// }
+			// }
+		} else {
+			md, _ := tmpLocalVarReturnValue.(map[string]interface{})
+			var tmp models.SessionManagementSubscriptionData;
+			singleNssai, snssaiOk := md["SingleNssai"].(models.Snssai)
+			if snssaiOk {
+				fmt.Println("singleNssai asserttion ok")
+			}
+			tmp.SingleNssai = &singleNssai
+			DnnConfigurations, dnnConfigurationsOk := md["DnnConfigurations"].(map[string]models.DnnConfiguration)
+			if dnnConfigurationsOk {
+				fmt.Println("DnnConfigurations asserttion ok")
+			}
+			tmp.DnnConfigurations = DnnConfigurations
+		}
 
 		 returnValue, ok := tmpLocalVarReturnValue.([]models.SessionManagementSubscriptionData)
 		 needCastValue, needCast := tmpLocalVarReturnValue.(models.SessionManagementSubscriptionData)
