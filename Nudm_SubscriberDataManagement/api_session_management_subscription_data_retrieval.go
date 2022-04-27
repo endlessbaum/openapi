@@ -15,6 +15,7 @@ import (
 	"io/ioutil"
 	"net/http"
 	"net/url"
+	"reflect"
 	"strings"
 
 	"github.com/antihax/optional"
@@ -137,6 +138,13 @@ import (
 
 		jsonout, _ := json.Marshal(tmpLocalVarReturnValue)
 		fmt.Println(string(jsonout))
+		v := reflect.TypeOf(tmpLocalVarReturnValue)
+		fmt.Println("res date type is ", v.Kind())
+		// if v.Kind() == reflect.Slice{
+
+		// } else {
+
+		// }
 
 		 returnValue, ok := tmpLocalVarReturnValue.([]models.SessionManagementSubscriptionData)
 		 needCastValue, needCast := tmpLocalVarReturnValue.(models.SessionManagementSubscriptionData)
