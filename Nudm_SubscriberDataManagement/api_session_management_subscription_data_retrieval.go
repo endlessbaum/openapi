@@ -148,35 +148,40 @@ import (
 			// }
 		} else {
 			var tmp models.SessionManagementSubscriptionData;
-			md, _ := tmpLocalVarReturnValue.(map[string]interface{})
-			singleNssai, _ := md["singleNssai"].(map[string]interface{})
-			sst, _ := singleNssai["sst"].(int32)
-			sd, _ := singleNssai["sd"].(string)
-			fmt.Println(singleNssai["sd"], singleNssai["sst"])
-			tmp.SingleNssai.Sst = sst;
-			tmp.SingleNssai.Sd = sd;
-			DnnConfigurations, dnnConfigurationsOk := md["dnnConfigurations"].(map[string]models.DnnConfiguration)
-			if dnnConfigurationsOk {
-				fmt.Println("DnnConfigurations asserttion ok")
+			if err := json.Unmarshal(jsonout, &tmp); err != nil {
+				panic(err)
 			}
-			tmp.DnnConfigurations = DnnConfigurations
+			// md, _ := tmpLocalVarReturnValue.(map[string]interface{})
+			// singleNssai, _ := md["singleNssai"].(map[string]interface{})
+			// sst, _ := singleNssai["sst"].(int32)
+			// sd, _ := singleNssai["sd"].(string)
+			// fmt.Println(singleNssai["sd"], singleNssai["sst"])
+			// tmp.SingleNssai.Sst = sst;
+			// tmp.SingleNssai.Sd = sd;
+			// dnnConfigurations, _ := md["dnnConfigurations"].(map[string]interface{})
+			
+			// for key, dnnConfiguration := range dnnConfigurations{
+			// 	tmpDnnconfiglation, okDnnConfiguration := dnnConfiguration.(models.DnnConfiguration)
+			// }
+
+			
 			fmt.Println(tmp)
 		}
 
-		 returnValue, ok := tmpLocalVarReturnValue.([]models.SessionManagementSubscriptionData)
-		 needCastValue, needCast := tmpLocalVarReturnValue.(models.SessionManagementSubscriptionData)
+		//  returnValue, ok := tmpLocalVarReturnValue.([]models.SessionManagementSubscriptionData)
+		//  needCastValue, needCast := tmpLocalVarReturnValue.(models.SessionManagementSubscriptionData)
 		
-		 if needCast {
-			jsonout2, _ := json.Marshal(needCastValue)
-			fmt.Println("casted : ", string(jsonout2))
-			var castedValue []models.SessionManagementSubscriptionData = []models.SessionManagementSubscriptionData{needCastValue} 
-			return castedValue, localVarHTTPResponse, nil
-		 }
-		 if ok {
-			jsonout3, _ := json.Marshal(returnValue)
-			fmt.Println("ok : ", string(jsonout3))
-			return returnValue, localVarHTTPResponse, nil
-		 }
+		//  if needCast {
+		// 	jsonout2, _ := json.Marshal(needCastValue)
+		// 	fmt.Println("casted : ", string(jsonout2))
+		// 	var castedValue []models.SessionManagementSubscriptionData = []models.SessionManagementSubscriptionData{needCastValue} 
+		// 	return castedValue, localVarHTTPResponse, nil
+		//  }
+		//  if ok {
+		// 	jsonout3, _ := json.Marshal(returnValue)
+		// 	fmt.Println("ok : ", string(jsonout3))
+		// 	return returnValue, localVarHTTPResponse, nil
+		//  }
 
 		 fmt.Println("casted error")
 		 return localVarReturnValue, localVarHTTPResponse, nil
