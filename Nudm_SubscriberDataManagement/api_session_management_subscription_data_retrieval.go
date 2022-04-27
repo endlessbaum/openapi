@@ -164,8 +164,7 @@ import (
 			// 	tmpDnnconfiglation, okDnnConfiguration := dnnConfiguration.(models.DnnConfiguration)
 			// }
 
-			
-			fmt.Println(tmp)
+			localVarReturnValue = []models.SessionManagementSubscriptionData{tmp}
 		}
 
 		//  returnValue, ok := tmpLocalVarReturnValue.([]models.SessionManagementSubscriptionData)
