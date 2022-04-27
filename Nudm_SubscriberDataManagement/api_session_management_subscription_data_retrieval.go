@@ -149,12 +149,12 @@ import (
 		} else {
 			md, _ := tmpLocalVarReturnValue.(map[string]interface{})
 			var tmp models.SessionManagementSubscriptionData;
-			singleNssai, snssaiOk := md["SingleNssai"].(models.Snssai)
+			singleNssai, snssaiOk := md["singleNssai"].(models.Snssai)
 			if snssaiOk {
 				fmt.Println("singleNssai asserttion ok")
 			}
 			tmp.SingleNssai = &singleNssai
-			DnnConfigurations, dnnConfigurationsOk := md["DnnConfigurations"].(map[string]models.DnnConfiguration)
+			DnnConfigurations, dnnConfigurationsOk := md["dnnConfigurations"].(map[string]models.DnnConfiguration)
 			if dnnConfigurationsOk {
 				fmt.Println("DnnConfigurations asserttion ok")
 			}
