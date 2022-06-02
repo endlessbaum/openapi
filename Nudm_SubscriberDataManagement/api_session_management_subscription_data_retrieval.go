@@ -146,6 +146,9 @@ import (
 			// for i:= 0; i< s.Len(); i++{
 
 			// }
+			if err := json.Unmarshal(jsonout, &localVarReturnValue); err != nil {
+				panic(err)
+			}
 		} else {
 			var tmp models.SessionManagementSubscriptionData;
 			if err := json.Unmarshal(jsonout, &tmp); err != nil {
