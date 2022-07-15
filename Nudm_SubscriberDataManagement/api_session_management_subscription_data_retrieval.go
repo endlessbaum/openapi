@@ -15,9 +15,12 @@ import (
 	"io/ioutil"
 	"net/http"
 	"net/url"
+	"reflect"
 	"strings"
 
 	"github.com/antihax/optional"
+
+	"encoding/json"
 
 	"github.com/free5gc/openapi"
 	"github.com/free5gc/openapi/models"
@@ -61,6 +64,7 @@ func (a *SessionManagementSubscriptionDataRetrievalApiService) GetSmData(ctx con
 		localVarFileName     string
 		localVarFileBytes    []byte
 		localVarReturnValue  []models.SessionManagementSubscriptionData
+		tmpLocalVarReturnValue  interface{}
 	)
 
 	// create path and map variables
@@ -130,6 +134,22 @@ func (a *SessionManagementSubscriptionDataRetrievalApiService) GetSmData(ctx con
 		err = openapi.Deserialize(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 		if err != nil {
 			apiError.ErrorStatus = err.Error()
+		}
+		jsonout, _ := json.Marshal(tmpLocalVarReturnValue)
+		fmt.Println(string(jsonout))
+		v := reflect.TypeOf(tmpLocalVarReturnValue)
+		fmt.Println("res date type is ", v.Kind())
+		if v.Kind() == reflect.Slice{
+			fmt.Println("res date type is slice")
+			if err := json.Unmarshal(jsonout, &localVarReturnValue); err != nil {
+				panic(err)
+			}
+		} else {
+			var tmp models.SessionManagementSubscriptionData;
+			if err := json.Unmarshal(jsonout, &tmp); err != nil {
+				panic(err)
+			}
+			localVarReturnValue = []models.SessionManagementSubscriptionData{tmp}
 		}
 		return localVarReturnValue, localVarHTTPResponse, nil
 	case 400:
