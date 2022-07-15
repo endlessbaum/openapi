@@ -90,6 +90,12 @@ func (a *DefaultApiService) SmPoliciesPost(ctx context.Context, smPolicyContextD
 	}
 
 	switch localVarHTTPResponse.StatusCode {
+	case 200:
+		err = openapi.Deserialize(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			apiError.ErrorStatus = err.Error()
+		}
+		return localVarReturnValue, localVarHTTPResponse, nil
 	case 201:
 		err = openapi.Deserialize(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 		if err != nil {
